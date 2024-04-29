@@ -38,5 +38,5 @@ security_groups = [var.security_groups["docker_sg"]]
 
 }
 output "instance-ip" {
-  value = instance.public_ip
+  value = instance.project1.public_ip
 }
