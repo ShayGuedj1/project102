@@ -1,0 +1,5 @@
+### This is the inventory of AWS EC2.
+plugin: amazon.aws.aws_ec2 
+filters: 
+  instance-state-name: running
+  instance-type: t2.micro

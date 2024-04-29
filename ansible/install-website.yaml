@@ -1,0 +1,21 @@
+---
+- name: Install website using docker image
+  hosts: all
+  become: yes
+  
+  tasks:
+    - name: install python3-docker
+      apt:
+        name: python3-docker
+        state: present
+      become: yes
+
+    - name: Run Docker container
+      docker_container:
+        name: app
+        image: sharagon1/web-project:1.0
+        state: started
+        detach: yes
+        restart_policy: always
+        ports:
+          - "80:80"

@@ -1,0 +1,88 @@
+---
+- name: Install Java and Docker
+  hosts: all
+  become: yes  
+
+  tasks:
+    - name: Update apt package cache (for Debian/Ubuntu).
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Install Java 11
+      apt:
+        name: openjdk-11-jdk
+        state: present
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Install Java 8
+      apt:
+        name: openjdk-8-jdk
+        state: present
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+    
+    - name: Uninstall all conflicting packages.
+      shell: for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do apt-get remove $pkg; done
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Update apt package cache (for Debian/Ubuntu).
+      apt:
+        update_cache: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+
+    - name: Install Docker dependencies
+      apt:
+        name: 
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Create directory for keyrings.
+      shell: sudo install -m 0755 -d /etc/apt/keyrings
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Add Docker repository
+      shell: sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+    
+    - name: Grant read permissions to docker.asc
+      become: yes
+      shell: sudo chmod a+r /etc/apt/keyrings/docker.asc
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Add Docker repository
+      shell: echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu focal stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Update apt package cache (for Debian/Ubuntu).
+      shell: apt update
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Install Docker
+      apt:
+        name: 
+        - docker-ce
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-compose-plugin
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+
+    - name: Start and enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
