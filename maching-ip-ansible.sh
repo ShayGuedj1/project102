@@ -1,5 +1,8 @@
 #!/bin/bash
 
+dig +short myip.opendns.com @resolver1.opendns.com > /home/ubuntu/project/project102/ip 
+export ANSIBLE_HOST_KEY_CHECKING=False
+
 file1=`cat ip`
 echo $file1
 
