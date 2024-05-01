@@ -17,6 +17,6 @@ with open('ips.json', 'r') as json_file:
     print("Extracted IP addresses:", ip_addresses)  # Debug output
 
     # Write all IP addresses to the inventory file
-    with open('inventory', 'w') as inventory_file:
+    with open('ansible/inventory', 'w') as inventory_file:
         for ip_address in ip_addresses:
             inventory_file.write(ip_address + '\n')
