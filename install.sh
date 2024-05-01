@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd /home/ubuntu/
 echo 'Starting Terraform: '
 sleep 1
 terraform init
