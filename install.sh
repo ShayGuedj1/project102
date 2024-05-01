@@ -10,6 +10,6 @@ terraform output -json > /home/ubuntu/ips.json
 
 cat /home/ubuntu/ips.json
 
-#python3 set-ip-ansible.py
+python3 set-ip-ansible.py
 
-#cat /home/ubuntu/project/project102/ansible/inventory
+cat /home/ubuntu/project/project102/ansible/inventory
