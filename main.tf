@@ -20,7 +20,7 @@ connection {
   }
 
 provisioner "file" {
-    source      = "home/ubuntu.ssh/ansible.pub"  # Path to your local public key
+    source      = "home/ubuntu.ssh/.pub"  # Path to your local public key
     destination = "/tmp/my-public-key.pub"  # Temporary location on the instance
   }
 
