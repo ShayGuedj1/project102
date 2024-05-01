@@ -34,6 +34,7 @@ provisioner "remote-exec" {
   }
 
 }
+
 output "instance-ip" {
   value = aws_instance.project1.public_ip
 }
