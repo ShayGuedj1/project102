@@ -3,20 +3,20 @@ provider "aws" {
 }
 
 resource "aws_instance" "project1" {
-  ami           = var.amis["20.04"]
-  instance_type = var.instance_types[0]
-  associate_public_ip_address = true  # Assign a public IP to this instance
-  key_name      = "projects"
-  tags = {
-    Name = "web-server"
-  }
+    ami           = var.amis["20.04"]
+    instance_type = var.instance_types[0]
+    associate_public_ip_address = true  # Assign a public IP to this instance
+    key_name      = "projects"
+    tags = {
+      Name = "web-server"
+    }
 security_groups = [var.security_groups["docker_sg"]]
 
 connection {
-  type        = "ssh"
-  user        = "ubuntu"  # Update with appropriate username
-  private_key = file("home/ubuntu/projects.pem")  # Path to your private key
-  host        = self.public_ip  # Use the public IP of the instance
+    type        = "ssh"
+    user        = "ubuntu"  # Update with appropriate username
+    private_key = file("home/ubuntu/projects.pem")  # Path to your private key
+    host        = self.public_ip  # Use the public IP of the instance
   }
 
 provisioner "file" {
