@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo 'Starting Terraform: '
-sleep 3
+sleep 1
 terraform init
 echo 'terraform apply'
 terraform apply --auto-approve 
