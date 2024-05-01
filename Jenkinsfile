@@ -14,8 +14,8 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 // Run Terraform to provision AWS instance
-                sh 'terraform init'
-                sh 'terraform apply --auto-approve'
+                sh chmod 777 install.sh
+                sh ./install.sh
             }
         }
         
