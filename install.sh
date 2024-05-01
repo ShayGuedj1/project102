@@ -5,8 +5,8 @@ echo 'Starting Terraform:'
 sleep 1
 terraform init
 sleep 3
-pwd
-sleep 3
+terraform plan
+sleep 8
 echo 'terraform apply'
 terraform apply --auto-approve
 sleep 2
