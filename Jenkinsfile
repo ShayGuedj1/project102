@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        //stage('Checkout') {
-        //   steps {
-        //        // Checkout code from GitHub
-        //        git 'https://github.com/ShayGuedj1/project102.git'
-        //    }
-        //}
+        stage('Checkout') {
+           steps {
+                // Checkout code from GitHub
+                git 'https://github.com/ShayGuedj1/project102.git'
+            }
+        }
         
         stage('Terraform Apply') {
             steps {
