@@ -12,7 +12,7 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 // Run Terraform to provision AWS instance
-                sh cp 'home/ubuntu/projects.pem' .
+                sh cp 'home/ubuntu/projects.pem .'
                 sh 'ls -la'
                 sh 'chmod 777 install.sh'
                 sh 'chmod 777 set-ip-ansible.py'
