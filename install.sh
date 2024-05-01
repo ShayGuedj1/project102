@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cp home/ubuntu/projects.pem .
+ls -la
+sleep 8
 echo 'Starting Terraform:'
 sleep 1
 terraform init
