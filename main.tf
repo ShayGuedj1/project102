@@ -29,7 +29,7 @@ provisioner "remote-exec" {
      "sudo mkdir -p /home/ubuntu/.ssh",  # Create .ssh directory if it doesn't exist
       "sudo cp /tmp/my-public-key.pub /home/ubuntu/.ssh/authorized_keys",  # Copy public key to authorized_keys
       "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh",  # Change ownership to ubuntu user
-      "sudo chmod 600 /home/ubuntu/.ssh/authorized_keys",  # Set correct permissions on authorized_keys
+      "sudo chmod 600 /home/ubuntu/.ssh/authorized_keys"  # Set correct permissions on authorized_keys
     ]
   }
 
