@@ -2,6 +2,7 @@
 
 echo 'Starting Terraform: '
 sleep 3
+terraform init
 terraform apply --auto-approve 
 sleep 2
 
