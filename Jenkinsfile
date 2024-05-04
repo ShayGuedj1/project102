@@ -25,7 +25,7 @@ pipeline {
                 sh 'echo "running pythoin"'
                 sh 'sleep 3'
                 sh 'python3 set-ip-ansible.py'
-                sh 'cat /ansible/inventory'
+                sh 'cat /home/ubuntu/inventory'
 
             }
         }
