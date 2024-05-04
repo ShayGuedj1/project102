@@ -17,6 +17,18 @@ pipeline {
                 sh './install.sh' 
             }
         }
+
+        stage('Terraform Apply') {
+            steps {
+                // Run Terraform to provision AWS instance
+                sh 'pwd'
+                sh 'echo "running pythoin"'
+                sh 'sleep 3'
+                sh 'python3 set-ip-ansible.py'
+                sh 'cat /ansible/inventory'
+
+            }
+        }
         
     }
 }
