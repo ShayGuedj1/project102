@@ -1,7 +1,7 @@
 import json
 
 # Open the ips.json file
-with open('ips.json', 'r') as json_file:
+with open('/home/ubuntu/ips.json', 'r') as json_file:
     data = json.load(json_file)
 
     # List to store all extracted IP addresses
