@@ -15,4 +15,6 @@ cat /home/ubuntu/ips.json
 
 python3 set-ip-ansible.py
 
-cat /home/ubuntu/project/project102/ansible/inventory
+echo 'output of ansible:
+sleep 3
+cat /ansible/inventory
