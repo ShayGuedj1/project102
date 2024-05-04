@@ -22,7 +22,7 @@ pipeline {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
-                sh 'echo "running pythoin"'
+                sh 'echo "running python"'
                 sh 'sleep 3'
                 sh 'python3 set-ip-ansible.py'
                 sh 'cat /home/ubuntu/inventory'
