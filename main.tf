@@ -15,12 +15,12 @@ resource "aws_instance" "project1" {
   connection {
     type        = "ssh"
     user        = "ubuntu"                         # Update with appropriate username
-    private_key = file("/home/projects.pem") # Path to your private key
+    private_key = file("/home/ubuntu/projects.pem") # Path to your private key
     host        = self.public_ip                   # Use the public IP of the instance
   }
 
   provisioner "file" {
-    source      = "/home/jenkins_home/ansible.pub" # Path to your local public key
+    source      = "/home/ubuntu/.ssh/ansible.pub" # Path to your local public key
     destination = "/tmp/ansible.pub"   # Temporary location on the instance
   }
 
