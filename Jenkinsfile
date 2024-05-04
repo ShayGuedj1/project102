@@ -10,7 +10,7 @@ pipeline {
                 sh 'sudo touch /home/ubuntu/ips.json'
                 sh 'sudo touch /home/ubuntu/inventory'
                 sh 'sudo chmod 777 /home/ubuntu/ips.json'
-                sh 'sudo chmod -R 666 /home/ubuntu/.ssh'
+                sh 'sudo chmod -R 777 /home/ubuntu/.ssh'
                 sh 'sudo chmod 777 set-ip-ansible.py'
                 sh 'sudo chmod 777 install.sh'
                 sh 'sudo chmod 777 /home/ubuntu/inventory'
@@ -26,6 +26,7 @@ pipeline {
                 sh 'sleep 3'
                 sh 'python3 set-ip-ansible.py'
                 sh 'cat /home/ubuntu/inventory'
+                sh 'sudo chmod 700 /home/ubuntu/.ssh'
 
             }
         }
