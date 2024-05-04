@@ -13,7 +13,7 @@ terraform output -json > /home/ubuntu/ips.json
 
 cat /home/ubuntu/ips.json
 
-python3 set-ip-ansible.py
+python3 ./set-ip-ansible.py
 
 echo 'output of ansible:
 sleep 3
