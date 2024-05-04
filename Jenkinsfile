@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Apply') {
+        stage('copy ip') {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
