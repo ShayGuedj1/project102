@@ -8,7 +8,7 @@ pipeline {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
                 sh 'sudo touch /home/ubuntu/ips.josn'
-                sh 'sudo chmod 777 /home/ubuntu/ips.json'
+                sh 'chmod 777 /home/ubuntu/ips.json'
                 sh 'sudo chmod -R 777 /home/ubuntu/.ssh'
                 sh 'sudo chmod 777 set-ip-ansible.py'
                 sh 'sudo chmod 777 install.sh'
