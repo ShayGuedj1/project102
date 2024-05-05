@@ -26,7 +26,7 @@ pipeline {
                 sh 'sleep 3'
                 sh 'python3 set-ip-ansible.py'
                 sh 'cat /home/ubuntu/inventory'
-                sh 'sudo chmod 700 /home/ubuntu/.ssh'
+                sh 'sudo chmod 600 /home/ubuntu/.ssh'
 
             }
         }
