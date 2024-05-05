@@ -22,6 +22,8 @@ pipeline {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
+                sh 'ls'
+                sh 'sleep 600'
                 sh 'echo "running python"'
                 sh 'sleep 3'
                 sh 'python3 set-ip-ansible.py'
