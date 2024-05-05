@@ -8,7 +8,6 @@ pipeline {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
                 sh 'ls'
-                sh 'sleep 6000'
                 sh 'sudo touch /home/ubuntu/ips.json'
                 sh 'sudo touch /home/ubuntu/inventory'
                 sh 'sudo chmod 777 /home/ubuntu/ips.json'
@@ -37,7 +36,7 @@ pipeline {
         stage('run ansible') {
             steps {
                 // Run Terraform to provision AWS instance
-                sh 'cd ansible/'
+                sh 'cd ./ansible/'
                 sh 'ansible-playbook -i /home/ubuntu/inventory /ansible/install-services.yaml'
 
             }
