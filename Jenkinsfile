@@ -34,6 +34,7 @@ pipeline {
         stage('run ansible') {
             steps {
                 // Run Terraform to provision AWS instance
+                sh 'cd ansible/'
                 sh 'ansible-playbook -i /home/ubuntu/inventory /ansible/install-services.yaml'
 
             }
