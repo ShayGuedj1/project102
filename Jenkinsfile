@@ -7,6 +7,8 @@ pipeline {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
+                sh 'ls'
+                sh 'sleep 6000'
                 sh 'sudo touch /home/ubuntu/ips.json'
                 sh 'sudo touch /home/ubuntu/inventory'
                 sh 'sudo chmod 777 /home/ubuntu/ips.json'
@@ -23,7 +25,6 @@ pipeline {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
                 sh 'ls'
-                sh 'sleep 600'
                 sh 'echo "running python"'
                 sh 'sleep 3'
                 sh 'python3 set-ip-ansible.py'
