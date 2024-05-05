@@ -6,7 +6,7 @@ resource "aws_instance" "project1" {
   ami                         = var.amis["20.04"]
   instance_type               = var.instance_types[0]
   associate_public_ip_address = true # Assign a public IP to this instance
-  key_name                    = "projects"
+  key_name                    = "master"
   tags = {
     Name = "web-server"
   }
