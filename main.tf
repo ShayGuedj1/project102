@@ -21,16 +21,16 @@ resource "aws_instance" "project1" {
   }
 
   provisioner "file" {
-    source      = "/home/ubuntu/.ssh/master.pub" # Path to your local public key
-    destination = "/tmp/master.pub"   # Temporary location on the instance
+    source      = "/home/ubuntu/.ssh/id_rsa.pub" # Path to your local public key
+    destination = "/tmp/id_rsa.pub"   # Temporary location on the instance
   }
 
   provisioner "remote-exec" {
     inline = [
       "sudo mkdir -p /home/ubuntu/.ssh",                            # Create .ssh directory if it doesn't exist
-      "sudo cat /tmp/master.pub >> /home/ubuntu/.ssh/authorized_keys", # Copy public key to authorized_keys
+      "sudo cat /tmp/id_rsa.pub >> /home/ubuntu/.ssh/authorized_keys", # Copy public key to authorized_keys
       "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh",              # Change ownership to ubuntu user
-      "sudo chmod 600 /home/ubuntu/.ssh/authorized_keys"            # Set correct permissions on authorized_keys
+      "sudo chmod 644 /home/ubuntu/.ssh/authorized_keys"            # Set correct permissions on authorized_keys
     ]
   }
 
