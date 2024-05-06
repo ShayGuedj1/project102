@@ -9,7 +9,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls' 
                 sh 'cd ansible'
-                sh 'ls'
+                sh 'ls /ansible'
             }
         }
     }
