@@ -1,26 +1,35 @@
 pipeline {
     agent any
 
-    stages {
-        
-        stage('install-services') {
-            steps {
-                //sh 'sudo chmod 777 /home/ubuntu/.ssh' 
-                sh 'ls ansible'
-                sh 'sleep 10'
-                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml --ssh-common-args=\'-o StrictHostKeyChecking=no\''
-                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-website.yaml --ssh-common-args=\'-o StrictHostKeyChecking=no\''
-            }
-        }
+    environment {
+        // Define environment variables if needed
+        ANSIBLE_PLAYBOOK = 'ansible/install-services.yaml'
+        SSH_PRIVATE_KEY_ID = 'your_ssh_private_key_credential_id'
+        PRIVATE_KEY_PATH = '/home/ubuntu/.ssh/id_rsa'
+        IPS_FILE_PATH = '/home/ubuntu/inventory'
 
-        stage('wrapping this up!!') {
+    }
+
+    stages {
+        stage('Run Ansible Playbook') {
             steps {
-                // Run Terraform to provision AWS instance
-                sh 'sudo chmod -R 700 /home/ubuntu/.ssh'
-                sh 'sleep 5'
-                sh 'sudo rm /home/ubuntu/ips.json'
-                sh 'sudo rm /home/ubuntu/inventory'
+                    
+                    
+
+                    // Execute Ansible playbook
+                ansiblePlaybook(
+                    playbook: "${ANSIBLE_PLAYBOOK}",
+                    inventory: "${IPS_FILE_PATH},",
+                    extras: "-e ansible_ssh_private_key_file=${env.SSH_PRIVATE_KEY_ID}"
+                    )
+                }
             }
         }
     }
-}
+
+    post {
+        always {
+            // Print 'done' at the end
+            echo 'Done'
+        }
+    }
