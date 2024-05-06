@@ -7,6 +7,7 @@ pipeline {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
+                sh 'ls'
                 sh 'sudo touch /home/ubuntu/ips.json'
                 sh 'sudo touch /home/ubuntu/inventory'
                 sh 'sudo chmod 777 /home/ubuntu/ips.json'
@@ -22,11 +23,13 @@ pipeline {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
+                sh 'ls'
                 sh 'echo "running python"'
                 sh 'sleep 3'
                 sh 'python3 set-ip-ansible.py'
                 sh 'cat /home/ubuntu/inventory'
                 sh 'sudo chmod 700 /home/ubuntu/.ssh'
+                sh 'sudo chmod 600 /home/ubuntu/.ssh/authorized_keys'
 
             }
         }
@@ -34,7 +37,8 @@ pipeline {
         stage('run ansible') {
             steps {
                 // Run Terraform to provision AWS instance
-                sh 'ansible-playbook -i /home/ubuntu/inventory /ansible/install-services.yaml'
+                sh 'cd ./ansible/'
+                sh 'ansible-playbook -i /home/ubuntu/inventory install-services.yaml'
 
             }
         }
