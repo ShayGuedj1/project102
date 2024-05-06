@@ -6,10 +6,17 @@ pipeline {
         stage('Terraform Apply') {
             steps {
                 // Run Terraform to provision AWS instance
-                sh 'pwd'
-                sh 'ls' 
+                sh 'sudo chmod -R 777 /home/ubuntu/.ssh' 
                 sh 'ls ansible'
+                sh 'sleep 5'
                 sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml --ssh-common-args=\'-o StrictHostKeyChecking=no\''
+            }
+        }
+
+        stage('copy ip') {
+            steps {
+                // Run Terraform to provision AWS instance
+                sh 'sudo chmod -R 600 /home/ubuntu/.ssh'
             }
         }
     }
