@@ -15,20 +15,20 @@ resource "aws_instance" "project1" {
   connection {
     type        = "ssh"
     user        = "ubuntu"                         # Update with appropriate username
-    private_key = file("/home/ubuntu/projects.pem") # Path to your private key
+    private_key = file("/home/ubuntu/.ssh/master.pem") # Path to your private key
     host        = self.public_ip                   # Use the public IP of the instance
     #agent        = true
   }
 
   provisioner "file" {
-    source      = "/home/ubuntu/.ssh/id_rsa.pub" # Path to your local public key
-    destination = "/tmp/id_rsa.pub"   # Temporary location on the instance
+    source      = "/home/ubuntu/.ssh/master.pub" # Path to your local public key
+    destination = "/tmp/master.pub"   # Temporary location on the instance
   }
 
   provisioner "remote-exec" {
     inline = [
       "sudo mkdir -p /home/ubuntu/.ssh",                            # Create .ssh directory if it doesn't exist
-      "sudo cp /tmp/id_rsa.pub /home/ubuntu/.ssh/authorized_keys", # Copy public key to authorized_keys
+      "sudo cp /tmp/master.pub /home/ubuntu/.ssh/authorized_keys", # Copy public key to authorized_keys
       "sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh",              # Change ownership to ubuntu user
       "sudo chmod 600 /home/ubuntu/.ssh/authorized_keys"            # Set correct permissions on authorized_keys
     ]
