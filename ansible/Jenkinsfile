@@ -9,7 +9,8 @@ pipeline {
                 sh 'sudo chmod -R 777 /home/ubuntu/.ssh' 
                 sh 'ls ansible'
                 sh 'sleep 5'
-                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml --ssh-common-args=\'-o StrictHostKeyChecking=no\''
+                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml'
+                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-website.yaml'
             }
         }
 
