@@ -8,7 +8,6 @@ pipeline {
                 // Run Terraform to provision AWS instance
                 sh 'pwd'
                 sh 'ls' 
-                sh 'cd $(pwd)/ansible'
                 sh 'ls ansible'
             }
         }
