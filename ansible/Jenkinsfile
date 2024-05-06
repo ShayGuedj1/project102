@@ -3,21 +3,22 @@ pipeline {
 
     stages {
         
-        stage('Terraform Apply') {
+        stage('install-services') {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'sudo chmod -R 777 /home/ubuntu/.ssh' 
                 sh 'ls ansible'
                 sh 'sleep 5'
-                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml'
-                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-website.yaml'
+                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml --ssh-common-args=\'-o StrictHostKeyChecking=no\''
+                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-website.yaml --ssh-common-args=\'-o StrictHostKeyChecking=no\''
             }
         }
 
-        stage('copy ip') {
+        stage('wrapping this up!!') {
             steps {
                 // Run Terraform to provision AWS instance
                 sh 'sudo chmod -R 600 /home/ubuntu/.ssh'
+                sh 'sleep 5'
             }
         }
     }
