@@ -9,7 +9,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls' 
                 sh 'ls ansible'
-                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml'
+                sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml --ssh-common-args='-o StrictHostKeyChecking=no''
             }
         }
     }
