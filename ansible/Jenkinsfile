@@ -6,7 +6,7 @@ pipeline {
         stage('install-services') {
             steps {
                 // Run Terraform to provision AWS instance
-                sh 'sudo chmod 777 /home/ubuntu/.ssh' 
+                //sh 'sudo chmod 777 /home/ubuntu/.ssh' 
                 sh 'ls ansible'
                 sh 'sleep 5'
                 sh 'ansible-playbook -i /home/ubuntu/inventory ansible/install-services.yaml --ssh-common-args=\'-o StrictHostKeyChecking=no\''
