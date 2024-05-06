@@ -19,6 +19,8 @@ pipeline {
                 // Run Terraform to provision AWS instance
                 sh 'sudo chmod -R 600 /home/ubuntu/.ssh'
                 sh 'sleep 5'
+                sh 'sudo rm /home/ubuntu/ips.json'
+                sh 'sudo rm /home/ubuntu/inventory'
             }
         }
     }
