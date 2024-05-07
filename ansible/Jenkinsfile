@@ -5,11 +5,20 @@ pipeline {
         // Define environment variables if needed
         ANSIBLE_PLAYBOOK = 'ansible/install-services.yaml'
         PRIVATE_KEY_PATH = '/home/ubuntu/.ssh/id_rsa'
-        IPS_FILE_PATH = '/home/ubuntu/inventory'
+        IPS_FILE_PATH = 'cat /home/ubuntu/inventory'
 
     }
 
     stages {
+
+        stage('Read Inventory File') {
+            steps {
+                script {
+                    // Read contents of inventory file into IPS_FILE_CONTENT variable
+                    IPS_FILE_PATH = sh(script: 'cat /home/ubuntu/inventory', returnStdout: true).trim()
+                }
+            }
+        }
 
         stage('Run Ansible Playbook') {
             steps {
