@@ -3,7 +3,7 @@
 
 echo 'Starting Terraform:'
 sleep 1
-sudo chown jenkins:jenkins /home/ubuntu/.ssh/master.pem
+sudo chown jenkins:jenkins /home/ubuntu/.ssh/master
 terraform init
 sleep 3
 echo 'terraform apply'
