@@ -34,4 +34,5 @@ pipeline {
                     sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
             }
         }
+    }
 }
