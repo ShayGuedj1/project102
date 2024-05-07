@@ -36,11 +36,11 @@ pipeline {
         }
     
 
-    post {
-        always {
-            // Print 'done' at the end
-            sh 'sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh'
-            echo 'Done'
+post {
+    always {
+        // Print 'done' at the end
+        sh 'sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh'
+        echo 'Done'
 
-        }
     }
+}
