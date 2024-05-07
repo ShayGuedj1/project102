@@ -28,6 +28,7 @@ resource "aws_instance" "project1" {
   provisioner "remote-exec" {
     inline = [
       "sudo mkdir -p /home/ubuntu/.ssh",                            # Create .ssh directory if it doesn't exist
+      "sudo chmod 700 /home/ubuntu/.ssh",
       "sudo cat /tmp/id_rsa.pub >> /home/ubuntu/.ssh/authorized_keys", # Copy public key to authorized_keys
       "echo 'adding the key'",
       "sudo chown  ubuntu:ubuntu /home/ubuntu/.ssh",              # Change ownership to ubuntu user
