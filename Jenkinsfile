@@ -5,7 +5,7 @@ pipeline {
         
         stage('Terraform Apply') {
             steps {
-                // Run Terraform to provision AWS instance
+                // grant permissions and run Terraform to provision AWS instance from the install.sg script.
                 sh 'pwd'
                 sh 'ls'
                 sh 'sudo touch /home/ubuntu/ips.json'
@@ -23,7 +23,7 @@ pipeline {
 
         stage('copy ip') {
             steps {
-                // Run Terraform to provision AWS instance
+                // Run a python file to fetch the ip into the inventory file.
                 sh 'ls'
                 sh 'echo "running python"'
                 sh 'sleep 2'
@@ -34,7 +34,7 @@ pipeline {
                 sh 'sleep 2'
                 sh 'sudo chmod 700 /home/ubuntu/.ssh'
                 sh 'sudo chmod 600 /home/ubuntu/.ssh/authorized_keys'
-                //sh 'sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub'
+                
 
 
             }
