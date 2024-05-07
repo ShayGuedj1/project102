@@ -29,7 +29,6 @@ pipeline {
                 ansiblePlaybook(
                     playbook: "${ANSIBLE_PLAYBOOK}",
                     inventory: "${IPS_FILE_PATH},",
-                    becomeUser: 'ubuntu'
                     )
                 }
             }

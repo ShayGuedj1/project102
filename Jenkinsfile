@@ -35,6 +35,8 @@ pipeline {
                 sh 'sudo chmod 700 /home/ubuntu/.ssh'
                 sh 'sudo chmod 600 /home/ubuntu/.ssh/authorized_keys'
                 sh 'sudo chown -R jenkins:jenkins /home/ubuntu/.ssh'
+                sh 'sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub'
+
 
             }
         }
