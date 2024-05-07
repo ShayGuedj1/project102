@@ -32,9 +32,10 @@ pipeline {
                 sh 'cat /home/ubuntu/inventory'
                 sh 'cat /home/ubuntu/inventory >> hosts' 
                 sh 'ls'
-                sh 'sleep 15'
+                sh 'sleep 5'
                 sh 'sudo chmod 700 /home/ubuntu/.ssh'
                 sh 'sudo chmod 600 /home/ubuntu/.ssh/authorized_keys'
+                sh 'sudo chown -R jenkins:jenkins /home/ubuntu/.ssh'
 
             }
         }
