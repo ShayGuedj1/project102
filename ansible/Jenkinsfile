@@ -11,12 +11,6 @@ pipeline {
 
     stages {
 
-        stage('giving permission') {
-            steps {
-                sh 'sudo chown jenkins:jenkins ~/home/ubuntu/.ssh'
-            }
-        }
-
         stage('Run Ansible Playbook') {
             steps {
                     
@@ -36,7 +30,7 @@ pipeline {
     post {
         always {
             // Print 'done' at the end
-            sh 'sudo chown ubuntu:ubuntu /home/ubuntu/.ssh'
+            sh 'sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh'
             echo 'Done'
 
         }
