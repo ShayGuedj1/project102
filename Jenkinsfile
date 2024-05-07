@@ -24,7 +24,6 @@ pipeline {
         stage('copy ip') {
             steps {
                 // Run Terraform to provision AWS instance
-                sh 'pwd'
                 sh 'ls'
                 sh 'echo "running python"'
                 sh 'sleep 3'
