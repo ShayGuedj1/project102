@@ -1,4 +1,4 @@
-# Use the official Nginx image from Docker Hub
+# Use the official Nginx image from Docker Hub.
 FROM nginx:latest
 
 # Install Git (if not already included in the Nginx image)
