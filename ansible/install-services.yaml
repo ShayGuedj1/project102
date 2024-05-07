@@ -8,8 +8,8 @@
     ANSIBLE_HOST_KEY_CHECKING: "False"
   tasks:
 
-    - name: copying pub keyrings.
-      shell: chmod a+x /home/ubuntu/project/project102/maching-ip-ansible.sh && /home/ubuntu/project/project102/maching-ip-ansible.sh
+    #- name: copying pub keyrings.
+    #  shell: chmod a+x /home/ubuntu/project/project102/maching-ip-ansible.sh && /home/ubuntu/project/project102/maching-ip-ansible.sh
 
     - name: Update apt package cache (for Debian/Ubuntu).
       apt:
