@@ -24,15 +24,22 @@ pipeline {
         stage('Run Ansible Playbook- services') {
             steps {
                     sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_SERVICES} -u ubuntu"
+                    //sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
+                }
+            }
+        
+
+        stage('Run Ansible Playbook- web') {
+            steps {
                     sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
                 }
             }
         }
+post {
+    always {
+        // Print 'done' at the end
+        sh 'sudo chown -R ubuntu:ubuntu /home/ubuntu/.ssh'
+        echo 'Done'
 
-        //stage('Run Ansible Playbook- web') {
-        //    steps {
-        //            sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
-        //        }
-        //    }
-        //}
-
+    }
+}
