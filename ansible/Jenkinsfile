@@ -22,14 +22,7 @@ pipeline {
 
         stage('Run Ansible Playbook') {
             steps {
-                    
-                    
-
-                    // Execute Ansible playbook
-                ansiblePlaybook(
-                    playbook: "${ANSIBLE_PLAYBOOK}",
-                    inventory: "${IPS_FILE_PATH},",
-                    )
+                    sh "ansible-playbook -i ${IPS_FILE_PATH} ${ANSIBLE_PLAYBOOK}"
                 }
             }
         }
