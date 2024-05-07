@@ -1,6 +1,6 @@
 ---
 - name: Install website using docker image
-  hosts: localhost
+  hosts: all
   become: yes
   vars:
     ansible_ssh_private_key_file: /home/ubuntu/.ssh/master
@@ -13,6 +13,16 @@
         name: python3-docker
         state: present
       become: yes
+    
+    - name: granting permission to Docker
+      shell: sudo usermod -aG docker ${USER}
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+    
+    - name: granting permission to Docker
+      shell: newgrp docker
+      become: yes
+      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
 
     - name: Run Docker container
       become: yes
