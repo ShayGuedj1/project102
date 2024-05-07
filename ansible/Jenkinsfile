@@ -5,7 +5,7 @@ pipeline {
         // Define environment variables if needed
         ANSIBLE_PLAYBOOK = 'ansible/install-services.yaml'
         PRIVATE_KEY_PATH = '/home/ubuntu/.ssh/id_rsa'
-        IPS_FILE_PATH = 'cat /home/ubuntu/inventory'
+        IPS_FILE_PATH = '/home/ubuntu/inventory'
 
     }
 
