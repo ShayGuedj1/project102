@@ -32,7 +32,8 @@ resource "aws_instance" "project1" {
       "sudo cat /tmp/master.pub >> /home/ubuntu/.ssh/authorized_keys", # Copy public key to authorized_keys
       "echo 'adding the key'",
       "sudo chown -R  ubuntu:ubuntu /home/ubuntu/.ssh",              # Change ownership to ubuntu user
-      "sudo chmod 644 /home/ubuntu/.ssh/authorized_keys"            # Set correct permissions on authorized_keys
+      "sudo chmod 644 /home/ubuntu/.ssh/authorized_keys" ,           # Set correct permissions on authorized_keys
+      "cat /etc/os-release"
       
     ]
   }
