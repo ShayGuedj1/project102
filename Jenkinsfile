@@ -26,16 +26,15 @@ pipeline {
                 // Run Terraform to provision AWS instance
                 sh 'ls'
                 sh 'echo "running python"'
-                sh 'sleep 3'
+                sh 'sleep 2'
                 sh 'python3 set-ip-ansible.py'
                 sh 'cat /home/ubuntu/inventory'
                 sh 'cat /home/ubuntu/inventory >> hosts' 
                 sh 'ls'
-                sh 'sleep 5'
+                sh 'sleep 2'
                 sh 'sudo chmod 700 /home/ubuntu/.ssh'
                 sh 'sudo chmod 600 /home/ubuntu/.ssh/authorized_keys'
-                sh 'sudo chown -R jenkins:jenkins /home/ubuntu/.ssh'
-                sh 'sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub'
+                //sh 'sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/id_rsa.pub'
 
 
             }
