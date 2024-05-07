@@ -3,7 +3,7 @@
   hosts: localhost
   become: yes
   vars:
-    ansible_ssh_private_key_file: /home/ubuntu/.ssh/master
+    ansible_ssh_private_key_file: /home/ubuntu/.ssh/master.pem
   environment:
     ANSIBLE_HOST_KEY_CHECKING: "False"
   
