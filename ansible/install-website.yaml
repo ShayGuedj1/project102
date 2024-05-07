@@ -15,6 +15,7 @@
       become: yes
 
     - name: Run Docker container
+      become: yes
       docker_container:
         name: app
         image: sharagon1/web-project:1.0
