@@ -19,10 +19,10 @@
       become: yes
       when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
     
-    - name: granting permission to Docker
-      shell: newgrp docker
-      become: yes
-      when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
+    #- name: granting permission to Docker
+    #  shell: newgrp docker
+    #  become: yes
+    #  when: ansible_os_family == 'Debian'  # Only run on Debian-based systems
 
     - name: Run Docker container
       become: yes
