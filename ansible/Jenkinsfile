@@ -21,19 +21,19 @@ pipeline {
             }
         }
 
-        stage('Run Ansible Playbook') {
+        stage('Run Ansible Playbook- services') {
             steps {
                     sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_SERVICES} -u ubuntu"
                 }
             }
         }
 
-        stage('Run Ansible Playbook') {
+        stage('Run Ansible Playbook- web') {
             steps {
                     sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
                 }
             }
-        }
+}
     
 
 post {
