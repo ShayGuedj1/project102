@@ -7,7 +7,7 @@ resource "aws_instance" "project" {
   instance_type               = var.instance_types[0]
   associate_public_ip_address = true # Assign a public IP to this instance
   key_name                    = "master"
-  subnet_id                   = aws_subnet.project-subnet.id
+  subnet_id                   = aws_subnet.subnet1.id
   tags = {
     Name = "web-server"
   }
@@ -123,7 +123,7 @@ resource "aws_lb" "project-lb" {
   name               = "project-load-balancer"
   internal           = false
   load_balancer_type = "application"
-  subnets            = [aws_subnet.project-subnet.id, aws_subnet.project-subnet2.id]
+  subnets            = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
 }
 
 # Create a target group for the load balancer
