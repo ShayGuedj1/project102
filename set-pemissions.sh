@@ -11,7 +11,6 @@ sudo chmod 777 /home/ubuntu/hosts
 sudo chmod 777 /home/ubuntu/ips.json
 sudo chmod 777 /home/ubuntu/.ssh
 sudo chmod 777 set-ip-ansible.py
-sudo chmod 777 install.sh
 sudo chmod 777 /home/ubuntu/inventory
 sudo chmod 777 convert-ip.sh
 terraform init
