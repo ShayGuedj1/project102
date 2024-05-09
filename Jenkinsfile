@@ -6,7 +6,7 @@ pipeline {
         stage('Set configurations') {
             steps {
                 // grant permissions and run Terraform to provision AWS instance from the install.sg script.
-                sh 'sudo chmod a+x set-pemissions.sh'
+                sh 'sudo chmod 777 set-pemissions.sh'
                 sh './set-pemissions.sh' 
                 sh './convert-ip.sh'
             }

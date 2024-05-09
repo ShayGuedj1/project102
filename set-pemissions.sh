@@ -15,5 +15,5 @@ sh 'sudo chmod 777 /home/ubuntu/.ssh'
 sh 'sudo chmod 777 set-ip-ansible.py'
 sh 'sudo chmod 777 install.sh'
 sh 'sudo chmod 777 /home/ubuntu/inventory'
-sh 'sudo chmod a+x convert-ip.sh'
+sh 'sudo chmod 777 convert-ip.sh'
 
