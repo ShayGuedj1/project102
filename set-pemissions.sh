@@ -2,7 +2,7 @@
 
 
 echo 'Starting Terraform:'
-sleep 1
+sleep 5
 sudo chown jenkins:jenkins /home/ubuntu/.ssh/master
 sudo touch /home/ubuntu/ips.json
 sudo touch /home/ubuntu/inventory
