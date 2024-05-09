@@ -54,7 +54,7 @@ pipeline {
             // Delayed cleanup after 5 minutes
             script {
                 echo 'Waiting for 5 minutes before cleanup...'
-                sleep time: 300, unit: 'SECONDS'
+                sleep time: 30, unit: 'SECONDS'
                 sh 'terraform destroy -auto-approve'
                 sh "echo 'Please wait...'"
                 sh 'sleep 5'
