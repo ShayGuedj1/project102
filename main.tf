@@ -111,5 +111,5 @@ resource "aws_eip_association" "project-eip-assoc" {
 }
 
 output "instance-ip" {
-  value = aws_instance.project1.public_ip
+  value = aws_instance.project.public_ip
 }
