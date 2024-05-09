@@ -38,6 +38,40 @@ resource "aws_instance" "project1" {
     ]
   }
 
+
+}
+resource "aws_security_group" "project-sg" {
+  name        = "project-sg"
+  description = "Allow HTTP 8080 inbound traffic"
+  # Define ingress rules
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Define egress rule for all traffic
+  egress {
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
+    cidr_blocks     = ["0.0.0.0/0"]
+  }
 }
 
 output "instance-ip" {
