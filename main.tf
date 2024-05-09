@@ -83,14 +83,20 @@ resource "aws_vpc" "project-vpc" {
 resource "aws_subnet" "project-subnet" {
   vpc_id            = aws_vpc.project-vpc.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = ["us-east-1a", "us-east-1b"]
+  availability_zone = ["us-east-1a"]
+}
+
+resource "aws_subnet" "project-subnet2" {
+  vpc_id            = aws_vpc.project-vpc.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = ["us-east-1a"]
 }
 
 resource "aws_lb" "project-lb" {
   name               = "project-load-balancer"
   internal           = false
   load_balancer_type = "application"
-  subnets            = [aws_subnet.project-subnet.id]
+  subnets            = [aws_subnet.project-subnet.id, aws_subnet.project-subnet2.id]
 }
 
 # Create a target group for the load balancer
