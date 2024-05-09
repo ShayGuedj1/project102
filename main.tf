@@ -80,7 +80,7 @@ resource "aws_vpc" "project-vpc" {
   enable_dns_hostnames = true
 }
 
-resource "aws_subnet" "project_subnet" {
+resource "aws_subnet" "project-subnet" {
   vpc_id            = aws_vpc.project-vpc.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1"
@@ -94,7 +94,7 @@ resource "aws_lb" "project-lb" {
 }
 
 # Create a target group for the load balancer
-resource "aws_lb_target_group" "project_target_group" {
+resource "aws_lb_target_group" "project-target_group" {
   name     = "project-target-group"
   port     = 80
   protocol = "HTTP"
