@@ -2,15 +2,15 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_instance" "project1" {
+resource "aws_instance" "project" {
   ami                         = var.amis["20.04"]
   instance_type               = var.instance_types[0]
   associate_public_ip_address = true # Assign a public IP to this instance
   key_name                    = "master"
+  subnet_id     = aws_subnet.project-subnet.id
   tags = {
     Name = "web-server"
   }
-  security_groups = [var.security_groups["docker_sg"]]
 
   connection {
     type        = "ssh"
@@ -33,7 +33,7 @@ resource "aws_instance" "project1" {
       "echo 'adding the key'",
       "sudo chown -R  ubuntu:ubuntu /home/ubuntu/.ssh",              # Change ownership to ubuntu user
       "sudo chmod 644 /home/ubuntu/.ssh/authorized_keys" ,           # Set correct permissions on authorized_keys
-      "cat /etc/os-release"
+      "cat /etc/os-release"                                          # A quick verification that the SSH was succcessfull
       
     ]
   }
@@ -72,6 +72,42 @@ resource "aws_security_group" "project-sg" {
     protocol        = "-1"
     cidr_blocks     = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_vpc" "project-vpc" {
+  cidr_block = "10.0.0.0/16"
+  enable_dns_support = true
+  enable_dns_hostnames = true
+}
+
+resource "aws_subnet" "project_subnet" {
+  vpc_id            = aws_vpc.project-vpc.id
+  cidr_block        = "10.0.1.0/24"
+  availability_zone = "us-east-1"
+}
+
+resource "aws_lb" "project-lb" {
+  name               = "project-load-balancer"
+  internal           = false
+  load_balancer_type = "application"
+  subnets            = [aws_subnet.project-subnet.id]
+}
+
+# Create a target group for the load balancer
+resource "aws_lb_target_group" "project_target_group" {
+  name     = "project-target-group"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.project-vpc.id
+}
+
+resource "aws_eip" "project-eip" {
+  instance = aws_instance.project.id
+}
+
+resource "aws_eip_association" "project-eip-assoc" {
+  instance_id   = aws_instance.project.id
+  allocation_id = aws_eip.project-eip.id
 }
 
 output "instance-ip" {
