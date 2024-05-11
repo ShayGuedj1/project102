@@ -126,10 +126,7 @@ resource "aws_security_group" "project-sg" {
   }
 }
 
-resource "aws_vpc_endpoint_security_group_association" "sg_ec2" {
-  vpc_endpoint_id   = aws_vpc_endpoint.project.id
-  security_group_id = aws_security_group.project-sg.id
-}
+
 
 output "instance-ip" {
   value = aws_instance.project.public_ip
