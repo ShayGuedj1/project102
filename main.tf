@@ -10,6 +10,8 @@ resource "aws_instance" "project" {
   tags = {
     Name = "web-server"
   }
+  subnet_id     = aws_subnet.public_subnets.id
+  security_groups = [aws_security_group.project-sg.name]
   //vpc_security_group_ids = [aws_security_group.project-sg.id]
 
   connection {
