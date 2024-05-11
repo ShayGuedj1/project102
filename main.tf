@@ -10,7 +10,7 @@ resource "aws_instance" "project" {
   tags = {
     Name = "web-server"
   }
-  vpc_security_group_ids = [aws_security_group.project-sg.id]
+  //vpc_security_group_ids = [aws_security_group.project-sg.id]
 
   connection {
     type        = "ssh"
