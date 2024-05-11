@@ -2,15 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-module "vpc" {
-  source = "./vpc"
-}
-
-module "security_group" {
-  source  = "./security-groups"
-  vpc_id  = module.vpc.vpc_id
-}
-
 resource "aws_instance" "project" {
   ami                         = var.amis["20.04"]
   instance_type               = var.instance_types[0]
@@ -19,7 +10,7 @@ resource "aws_instance" "project" {
   tags = {
     Name = "web-server"
   }
-  security_groups = [module.security_group.security_group_id]
+  vpc_security_group_ids = [aws_security_group.project-sg.id]
 
 
 
