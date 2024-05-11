@@ -10,8 +10,6 @@ resource "aws_instance" "project" {
   tags = {
     Name = "web-server"
   }
-  subnet_id     = aws_subnet.public_subnets.id
-  security_groups = [aws_security_group.project-sg.name]
   //vpc_security_group_ids = [aws_security_group.project-sg.id]
 
   connection {
@@ -126,6 +124,11 @@ resource "aws_security_group" "project-sg" {
     protocol    = "-1"  # Allow all outbound traffic
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+resource "aws_vpc_endpoint_security_group_association" "sg_ec2" {
+  vpc_endpoint_id   = aws_vpc_endpoint.ec2.id
+  security_group_id = aws_security_group.sg.id
 }
 
 output "instance-ip" {
