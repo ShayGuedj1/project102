@@ -3,31 +3,23 @@ pipeline {
 
     stages {
         
-        stage('Set configurations') {
-            steps {
-                // grant permissions and run Terraform to provision AWS instance from the install.sg script.
-                sh 'sudo chmod 777 set-pemissions.sh'
-                sh './set-pemissions.sh' 
-                sh './convert-ip.sh'
-            }
-        }
-
         stage('Terraform Apply') {
             steps {
-                script {
-                    // Apply Terraform configuration
-                    def tfApplyStatus = sh script: 'terraform apply -auto-approve', returnStatus: true
-                    if (tfApplyStatus != 0) {
-                        error 'Terraform apply failed, destroying resources...'
-                        sh 'terraform destroy -auto-approve'
-                        currentBuild.result = 'FAILURE'
-                    } else {
-                        echo 'Terraform apply successful'
-                        echo 'success' // Output success message
-                    }
-                }
+                // grant permissions and run Terraform to provision AWS instance from the install.sg script.
+                sh 'pwd'
+                sh 'ls'
+                sh 'sudo touch /home/ubuntu/ips.json'
+                sh 'sudo touch /home/ubuntu/inventory'
+                sh 'sudo touch /home/ubuntu/hosts'
+                sh 'sudo chmod 777 /home/ubuntu/hosts'
+                sh 'sudo chmod 777 /home/ubuntu/ips.json'
+                sh 'sudo chmod 777 /home/ubuntu/.ssh'
+                sh 'sudo chmod 777 set-ip-ansible.py'
+                sh 'sudo chmod 777 install.sh'
+                sh 'sudo chmod 777 /home/ubuntu/inventory'
+                sh './install.sh' 
             }
-        }        
+        }
 
         stage('copy ip') {
             steps {
@@ -47,21 +39,6 @@ pipeline {
 
             }
         }
+        
     }
-
-    post {
-        always {
-            // Delayed cleanup after 5 minutes
-            script {
-                echo 'Waiting for 5 minutes before cleanup...'
-                sleep time: 30, unit: 'SECONDS'
-                sh 'terraform destroy -auto-approve'
-                sh "echo 'Please wait...'"
-                sh 'sleep 5'
-                sh "echo 'Project completed!!'"
-
-            }
-        }
-    }
-
 }
