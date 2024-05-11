@@ -93,7 +93,7 @@ resource "aws_security_group" "project-sg" {
   name        = "project-sg"
   description = "Example security group created with Terraform"
 
-  vpc_id     = aws_vpc.project-vpc.id  # Update with your VPC ID
+  //vpc_id     = aws_vpc.project-vpc.id  # Update with your VPC ID
 
   // Ingress rules (incoming traffic)
   ingress {
