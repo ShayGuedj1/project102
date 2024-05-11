@@ -16,3 +16,23 @@ resource "aws_subnet" "project" {
     Name = "project"
   }
 }
+
+resource "aws_internet_gateway" "project-gw" {
+  vpc_id = aws_vpc.project-vpc.id
+
+  tags = {
+    Name = "project"
+  }
+}
+
+resource "aws_route_table" "project-route" {
+  vpc_id = aws_vpc.project-vpc.id
+
+  route {
+    cidr_block = "10.0.1.0/24"
+    gateway_id = aws_internet_gateway.project-gw.id
+  }
+  tags = {
+    Name = "project"
+  }
+}
