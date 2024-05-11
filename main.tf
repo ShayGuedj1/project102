@@ -10,7 +10,7 @@ resource "aws_instance" "project" {
   tags = {
     Name = "web-server"
   }
-  security_groups = security-groups.project-sg
+  security_groups = var.security-groups.project-sg
 
 
 

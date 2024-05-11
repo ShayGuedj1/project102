@@ -9,7 +9,7 @@ sleep 3
 echo 'terraform apply'
 terraform apply --auto-approve
 sleep 2
-sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/master.pem
+sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/master
 echo 'output of the ip'
 terraform output -json > /home/ubuntu/ips.json
 
