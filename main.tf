@@ -3,11 +3,11 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "./vpc.tf"
+  source = "./vpc"
 }
 
 module "security_group" {
-  source  = "./security-groups.tf"
+  source  = "./security-groups"
   vpc_id  = module.vpc.vpc_id
 }
 
