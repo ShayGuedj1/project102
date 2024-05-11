@@ -4,7 +4,7 @@ import json
 with open('/home/ubuntu/ips.json', 'r') as json_file:
     data = json.load(json_file)
 
-    # List to store all extracted IP addresses.
+    # List to store all extracted IP addresses
     ip_addresses = []
 
     # Iterate over all keys in the JSON data
