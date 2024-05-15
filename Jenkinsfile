@@ -41,4 +41,13 @@ pipeline {
         }
         
     }
+
+    post {
+        always {
+            script {
+                // Cleanup resources using Terraform destroy
+                sh 'terraform destroy --auto-approve'
+            }
+        }
+    }
 }
