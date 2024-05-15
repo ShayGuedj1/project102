@@ -46,7 +46,9 @@ pipeline {
         always {
             script {
                 // Cleanup resources using Terraform destroy
+                sh 'sudo chown jenkins:jenkins /home/ubuntu/.ssh/master'
                 sh 'terraform destroy --auto-approve'
+                sh 'sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/master'
             }
         }
     }
