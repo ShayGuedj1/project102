@@ -15,6 +15,9 @@ pipeline {
         stage('Read Inventory File') {
             steps {
                 sh 'cd $HOME'
+                sh 'pwd'
+                sh 'ls'
+                sh 'sleep 5'
                 script {
                     // Read contents of inventory file into IPS_FILE_PATH variable
                     IPS_FILE_PATH = sh(script: 'cat /home/new_home/inventory', returnStdout: true).trim()
