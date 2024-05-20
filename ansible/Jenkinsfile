@@ -5,8 +5,8 @@ pipeline {
         // Define environment variables.
         ANSIBLE_PLAYBOOK_SERVICES = 'ansible/install-services.yaml'
         ANSIBLE_PLAYBOOK_WEB = 'ansible/install-website.yaml'
-        PRIVATE_KEY_PATH = '/home/ubuntu/.ssh/master'
-        IPS_FILE_PATH = '/home/ubuntu/inventory'
+        PRIVATE_KEY_PATH = '/home/new_home/.ssh/master'
+        IPS_FILE_PATH = '/home/new_home/inventory'
 
     }
 
@@ -16,21 +16,21 @@ pipeline {
             steps {
                 script {
                     // Read contents of inventory file into IPS_FILE_PATH variable
-                    IPS_FILE_PATH = sh(script: 'cat /home/ubuntu/inventory', returnStdout: true).trim()
+                    IPS_FILE_PATH = sh(script: 'cat /home/new_home/inventory', returnStdout: true).trim()
                 }
             }
         }
 
         stage('Run Ansible Playbook- services') {
             steps {
-                    sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_SERVICES} -u ubuntu"
+                    sh "sudo ansible-playbook -i /home/new_home/inventory ${ANSIBLE_PLAYBOOK_SERVICES} -u ubuntu"
             }
         }
         
 
         stage('Run Ansible Playbook- web') {
             steps {
-                    sh "sudo ansible-playbook -i /home/ubuntu/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
+                    sh "sudo ansible-playbook -i /home/new_home/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
             }
         }
     }
