@@ -18,6 +18,7 @@ pipeline {
                 sh 'sudo chmod 777 install.sh'
                 sh 'sudo chmod 777 /home/new_home/inventory'
                 sh './install.sh' 
+                sh 'sudo chown -R jenkins:jenkins /home/new_home'
             }
         }
 
