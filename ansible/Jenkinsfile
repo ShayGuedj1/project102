@@ -34,4 +34,30 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            cleanWs() // Clean up the workspace
+        }
+
+        success {
+            echo 'Pipeline succeeded!'
+            sh 'sleep 300'
+            script {
+                // Destroy Terraform resources
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+
+        failure {
+            echo 'Pipeline failed! Destroying Terraform resources...'
+            script {
+                // Destroy Terraform resources
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+
+        cleanup {
+            echo 'Cleanup stage: always executed'
+        }
+    }
 }
