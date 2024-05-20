@@ -1,0 +1,60 @@
+pipeline {
+    agent any
+
+    environment {
+        INVENTORY_FILE = '/home/new_home/inventory'
+        TF_VAR_instance_ip = ''
+    }
+
+    stages {
+        stage('Prepare') {
+            steps {
+                script {
+                    // Read the IPs from the inventory file
+                    def inventoryFile = new File(env.INVENTORY_FILE)
+                    if (!inventoryFile.exists()) {
+                        error "Inventory file does not exist"
+                    }
+
+                    def instanceIPs = inventoryFile.readLines().findAll { it.trim() }
+                    if (instanceIPs.isEmpty()) {
+                        error "No IP addresses found in the inventory file"
+                    }
+
+                    // Convert IPs to a format suitable for Terraform variable
+                    env.TF_VAR_instance_ip = instanceIPs.join(",")
+                }
+            }
+        }
+
+        stage('Terraform Init') {
+            steps {
+                script {
+                    sh 'terraform init'
+                }
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                script {
+                    sh 'terraform plan -destroy -var "instance_ip=${TF_VAR_instance_ip}"'
+                }
+            }
+        }
+
+        stage('Terraform Destroy') {
+            steps {
+                script {
+                    sh 'terraform destroy -auto-approve -var "instance_ip=${TF_VAR_instance_ip}"'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
