@@ -1,7 +1,7 @@
 import json
 
 # Open the ips.json file
-with open('/home/ubuntu/ips.json', 'r') as json_file:
+with open('/home/new_home/ips.json', 'r') as json_file:
     data = json.load(json_file)
 
     # List to store all extracted IP addresses.
@@ -17,6 +17,6 @@ with open('/home/ubuntu/ips.json', 'r') as json_file:
     print("Extracted IP addresses:", ip_addresses)  # Debug output
 
     # Write all IP addresses to the inventory file
-    with open('/home/ubuntu/inventory', 'w') as inventory_file:
+    with open('/home/new_home/inventory', 'w') as inventory_file:
         for ip_address in ip_addresses:
             inventory_file.write(ip_address + '\n')
