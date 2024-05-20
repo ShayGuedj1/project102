@@ -36,27 +36,25 @@ pipeline {
                 sh 'sudo chmod 600 /home/new_home/.ssh/authorized_keys'
             }
         }
-        post {
-            always {
-                cleanWs() // Clean up the workspace
-            }
+    post {
+        always {
+            cleanWs() // Clean up the workspace
+        }
 
-            success {
-                echo 'Pipeline succeeded!'
-            }
+        success {
+            echo 'Pipeline succeeded!'
+        }
 
-            failure {
-                echo 'Pipeline failed! Destroying Terraform resources...'
-                script {
-                    // Destroy Terraform resources
-                    sh 'terraform destroy -auto-approve'
-                }
-            }
-
-            cleanup {
-                echo 'Cleanup stage: always executed'
+        failure {
+            echo 'Pipeline failed! Destroying Terraform resources...'
+            script {
+                // Destroy Terraform resources
+                sh 'terraform destroy -auto-approve'
             }
         }
-        
-    }
+
+        cleanup {
+            echo 'Cleanup stage: always executed'
+        }
+    }    
 }
