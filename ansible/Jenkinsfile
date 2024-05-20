@@ -12,7 +12,7 @@ pipeline {
 
     stages {
 
-        /*stage('Read Inventory File') {
+        stage('Read Inventory File') {
             steps {
                 sh 'echo $HOME'
                 sh 'cd cd ${HOME}'
@@ -20,10 +20,10 @@ pipeline {
                 sh 'sleep 5'
                 script {
                     // Read contents of inventory file into IPS_FILE_PATH variable
-                    IPS_FILE_PATH = sh(script: 'cat /home/new_home/inventory', returnStdout: true).trim()
+                    IPS_FILE_PATH = sh(script: 'cat /home/new_home/hosts', returnStdout: true).trim()
                 }
             }
-        }*/
+        }
 
         stage('Run Ansible Playbook- services') {
             steps {
