@@ -34,7 +34,7 @@ pipeline {
 
         stage('Run Ansible Playbook- web') {
             steps {
-                    sh "sudo ansible-playbook -i /home/new_home/inventory ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
+                    sh "sudo ansible-playbook -i ${IPS_FILE_PATH} ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
             }
         }
     }
