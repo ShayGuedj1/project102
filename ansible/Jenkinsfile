@@ -6,7 +6,7 @@ pipeline {
         ANSIBLE_PLAYBOOK_SERVICES = 'ansible/install-services.yaml'
         ANSIBLE_PLAYBOOK_WEB = 'ansible/install-website.yaml'
         PRIVATE_KEY_PATH = '/home/new_home/.ssh/master'
-        IPS_FILE_PATH = '/home/new_home/hosts'
+        IPS_FILE_PATH = '/home/new_home/inventory'
 
     }
 
@@ -20,7 +20,7 @@ pipeline {
                 sh 'sleep 5'
                 script {
                     // Read contents of inventory file into IPS_FILE_PATH variable
-                    IPS_FILE_PATH = sh(script: 'cat /home/new_home/hosts', returnStdout: true).trim()
+                    IPS_FILE_PATH = sh(script: 'cat /home/new_home/inventory', returnStdout: true).trim()
                 }
             }
         }
