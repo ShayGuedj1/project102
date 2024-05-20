@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    environment {
+    /*environment {
         TF_VAR_instance_ip = '/home/new_home/inventory'
-    }
+    }*/
 
     stages {
         /*stage('Prepare') {
@@ -36,14 +36,13 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform import aws_instance.${NAME_OF_INSTANCE_IN_TF} ${INSTANCE_NAME}'
-                sh 'terraform plan'
+                sh 'sudo terraform import aws_instance.${NAME_OF_INSTANCE_IN_TF} ${INSTANCE_ID}'
             }
         }
 
         stage('Terraform Destroy') {
             steps {
-                    sh 'terraform destroy --auto-approve --target aws_instance.${INSTANCE_NAME}'
+                    sh 'sudo terraform destroy --auto-approve --target aws_instance.${NAME_OF_INSTANCE_IN_TF}'
             }
         }
     }
