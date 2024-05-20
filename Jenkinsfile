@@ -51,14 +51,14 @@ pipeline {
             steps {
                 sh 'echo $HOME'
                 sh 'cd ${HOME}'
-                sh "sudo ansible-playbook -i ${IPS_FILE_PATH} ${ANSIBLE_PLAYBOOK_SERVICES} -u ubuntu"
+                sh "sudo ansible-playbook -i ${IP} ${ANSIBLE_PLAYBOOK_SERVICES} -u ubuntu"
             }
         }
         
 
         stage('Run Ansible Playbook- web') {
             steps {
-                    sh "sudo ansible-playbook -i ${IPS_FILE_PATH} ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
+                    sh "sudo ansible-playbook -i ${IP} ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
             }
         }
 
