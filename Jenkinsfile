@@ -1,6 +1,15 @@
 pipeline {
     agent any
 
+    environment {
+        // Define environment variables.
+        ANSIBLE_PLAYBOOK_SERVICES = 'ansible/install-services.yaml'
+        ANSIBLE_PLAYBOOK_WEB = 'ansible/install-website.yaml'
+        PRIVATE_KEY_PATH = '/home/new_home/.ssh/master'
+        IPS_FILE_PATH = '/home/new_home/inventory'
+
+    }
+
     stages {
         
         stage('Terraform Apply') {
@@ -37,9 +46,26 @@ pipeline {
                 sh 'sudo chmod 600 /home/new_home/.ssh/authorized_keys'
             }
         }
+
+        stage('Run Ansible Playbook- services') {
+            steps {
+                sh 'echo $HOME'
+                sh 'cd ${HOME}'
+                sh "sudo ansible-playbook -i ${IPS_FILE_PATH} ${ANSIBLE_PLAYBOOK_SERVICES} -u ubuntu"
+            }
+        }
+        
+
+        stage('Run Ansible Playbook- web') {
+            steps {
+                    sh "sudo ansible-playbook -i ${IPS_FILE_PATH} ${ANSIBLE_PLAYBOOK_WEB} -u ubuntu"
+            }
+        }
+
+
     }
     
-    post {
+    /*post {
         always {
             cleanWs() // Clean up the workspace
         }
@@ -59,5 +85,5 @@ pipeline {
         cleanup {
             echo 'Cleanup stage: always executed'
         }
-    }    
+    }  */  
 }

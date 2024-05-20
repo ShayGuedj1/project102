@@ -6,7 +6,7 @@ pipeline {
         ANSIBLE_PLAYBOOK_SERVICES = 'ansible/install-services.yaml'
         ANSIBLE_PLAYBOOK_WEB = 'ansible/install-website.yaml'
         PRIVATE_KEY_PATH = '/home/new_home/.ssh/master'
-        IPS_FILE_PATH = '/home/new_home/inventory.yaml'
+        IPS_FILE_PATH = '/home/new_home/inventory'
 
     }
 
