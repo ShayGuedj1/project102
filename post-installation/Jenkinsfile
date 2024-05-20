@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        INVENTORY_FILE = '/home/new_home/inventory'
-        TF_VAR_instance_ip = ''
+        TF_VAR_instance_ip = '/home/new_home/inventory'
     }
 
     stages {
@@ -37,17 +36,13 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                script {
-                    sh 'terraform plan -destroy -var "instance_ip=${TF_VAR_instance_ip}"'
-                }
+                sh 'terraform plan --destroy instance_ip=${TF_VAR_instance_ip}'
             }
         }
 
         stage('Terraform Destroy') {
             steps {
-                script {
-                    sh 'terraform destroy -auto-approve -var "instance_ip=${TF_VAR_instance_ip}"'
-                }
+                    sh 'terraform destroy --auto-approve instance_ip=${TF_VAR_instance_ip}'
             }
         }
     }
