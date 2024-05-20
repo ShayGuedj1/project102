@@ -36,6 +36,7 @@ pipeline {
                 sh 'sudo chmod 600 /home/new_home/.ssh/authorized_keys'
             }
         }
+    
     post {
         always {
             cleanWs() // Clean up the workspace
