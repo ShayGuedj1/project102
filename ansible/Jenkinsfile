@@ -15,7 +15,7 @@ pipeline {
         stage('Read Inventory File') {
             steps {
                 sh 'echo $HOME'
-                sh 'cd cd ${HOME}'
+                sh 'cd ${HOME}'
                 sh 'pwd'
                 sh 'sleep 5'
                 script {
