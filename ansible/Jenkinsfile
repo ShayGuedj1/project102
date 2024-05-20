@@ -23,7 +23,7 @@ pipeline {
                     IPS_FILE_PATH = sh(script: 'cat /home/new_home/inventory', returnStdout: true).trim()
                 }
             }
-        */}
+        }*/
 
         stage('Run Ansible Playbook- services') {
             steps {
