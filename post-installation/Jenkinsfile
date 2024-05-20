@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Prepare') {
+        /*stage('Prepare') {
             steps {
                 script {
                     // Read the IPs from the inventory file
@@ -24,7 +24,7 @@ pipeline {
                     env.TF_VAR_instance_ip = instanceIPs.join(",")
                 }
             }
-        }
+        }*/
 
         stage('Terraform Init') {
             steps {
