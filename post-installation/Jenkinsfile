@@ -36,7 +36,8 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan -destroy --target aws_instance.${INSTANCE_NAME}'
+                sh 'terraform import aws_instance.${NAME_OF_INSTANCE_IN_TF} ${INSTANCE_NAME}'
+                sh 'terraform plan'
             }
         }
 
