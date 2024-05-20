@@ -34,9 +34,27 @@ pipeline {
                 sh 'sleep 2'
                 sh 'sudo chmod 700 /home/new_home/.ssh'
                 sh 'sudo chmod 600 /home/new_home/.ssh/authorized_keys'
-                
+            }
+        }
+        post {
+            always {
+                cleanWs() // Clean up the workspace
+            }
 
+            success {
+                echo 'Pipeline succeeded!'
+            }
 
+            failure {
+                echo 'Pipeline failed! Destroying Terraform resources...'
+                script {
+                    // Destroy Terraform resources
+                    sh 'terraform destroy -auto-approve'
+                }
+            }
+
+            cleanup {
+                echo 'Cleanup stage: always executed'
             }
         }
         
