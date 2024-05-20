@@ -36,13 +36,13 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan -destroy --target aws_instance.${INSTANCE_NAME}'
+                sh 'terraform plan -destroy --target ${INSTANCE_NAME}'
             }
         }
 
         stage('Terraform Destroy') {
             steps {
-                    sh 'terraform destroy --auto-approve --target aws_instance.${INSTANCE_NAME}'
+                    sh 'terraform destroy --auto-approve ${INSTANCE_NAME}'
             }
         }
     }
