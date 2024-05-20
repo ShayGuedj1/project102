@@ -30,7 +30,7 @@ pipeline {
                 sh 'sleep 2'
                 sh 'python3 set-ip-ansible.py'
                 sh 'cat /home/new_home/inventory'
-                sh 'echo /home/new_home/inventory >> hosts' 
+                sh 'echo /home/new_home/inventory >> /home/new_home/hosts' 
                 sh 'ls'
                 sh 'sleep 2'
                 sh 'sudo chmod 700 /home/new_home/.ssh'
