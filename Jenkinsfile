@@ -36,6 +36,7 @@ pipeline {
                 sh 'sudo chmod 600 /home/new_home/.ssh/authorized_keys'
             }
         }
+    }
     
     post {
         always {
@@ -58,6 +59,4 @@ pipeline {
             echo 'Cleanup stage: always executed'
         }
     }    
-}
-
 }
